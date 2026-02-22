@@ -62,14 +62,14 @@ if (canvas) {
   function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    particles.forEach(particle => {
+    particles.forEach((particle) => {
       particle.update();
       particle.draw();
     });
 
     // Draw connections between nearby particles
     particles.forEach((p1, i) => {
-      particles.slice(i + 1).forEach(p2 => {
+      particles.slice(i + 1).forEach((p2) => {
         const dx = p1.x - p2.x;
         const dy = p1.y - p2.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -169,7 +169,7 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 // ===== SMOOTH SCROLL FOR NAV LINKS =====
-document.querySelectorAll(".nav-link, .btn[href^='#']").forEach(link => {
+document.querySelectorAll(".nav-link, .btn[href^='#']").forEach((link) => {
   link.addEventListener("click", (e) => {
     const href = link.getAttribute("href");
     if (href && href.startsWith("#")) {
@@ -179,7 +179,7 @@ document.querySelectorAll(".nav-link, .btn[href^='#']").forEach(link => {
         const offsetTop = target.offsetTop - 80; // Account for fixed navbar
         window.scrollTo({
           top: offsetTop,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
     }
@@ -189,11 +189,11 @@ document.querySelectorAll(".nav-link, .btn[href^='#']").forEach(link => {
 // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
 const observerOptions = {
   threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px"
+  rootMargin: "0px 0px -50px 0px",
 };
 
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add("animate-in");
       entry.target.style.opacity = "1";
@@ -203,12 +203,16 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements for animation
-document.querySelectorAll(".feature-card, .product-card, .spec-card, .pricing-card, .faq-item, .viability-item").forEach(el => {
-  el.style.opacity = "0";
-  el.style.transform = "translateY(30px)";
-  el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-  observer.observe(el);
-});
+document
+  .querySelectorAll(
+    ".feature-card, .product-card, .spec-card, .pricing-card, .faq-item, .viability-item"
+  )
+  .forEach((el) => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(30px)";
+    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    observer.observe(el);
+  });
 
 // ===== CART FUNCTIONALITY =====
 let cartCount = 0;
@@ -298,20 +302,22 @@ function showNotification(message) {
 }
 
 // ===== BUTTON CLICK HANDLERS =====
-document.querySelectorAll(".buy-now-btn").forEach(btn => {
+document.querySelectorAll(".buy-now-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     addToCart("MCP Keystone");
   });
 });
 
-document.querySelectorAll(".product-card .btn-primary, .pricing-card .btn-primary").forEach(btn => {
-  btn.addEventListener("click", (e) => {
-    const card = btn.closest(".product-card, .pricing-card");
-    const title = card?.querySelector("h3")?.textContent || "Produit";
-    addToCart(title);
+document
+  .querySelectorAll(".product-card .btn-primary, .pricing-card .btn-primary")
+  .forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const card = btn.closest(".product-card, .pricing-card");
+      const title = card?.querySelector("h3")?.textContent || "Produit";
+      addToCart(title);
+    });
   });
-});
 
 // ===== STATS COUNTER ANIMATION =====
 function animateValue(element, start, end, duration) {
@@ -329,22 +335,25 @@ function animateValue(element, start, end, duration) {
 }
 
 // Animate stats when hero section is visible
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const statNumbers = entry.target.querySelectorAll(".stat-number");
-      statNumbers.forEach(stat => {
-        const text = stat.textContent;
-        const match = text.match(/\d+/);
-        if (match) {
-          const finalValue = parseInt(match[0]);
-          animateValue(stat, 0, finalValue, 2000);
-        }
-      });
-      statsObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.5 });
+const statsObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const statNumbers = entry.target.querySelectorAll(".stat-number");
+        statNumbers.forEach((stat) => {
+          const text = stat.textContent;
+          const match = text.match(/\d+/);
+          if (match) {
+            const finalValue = parseInt(match[0]);
+            animateValue(stat, 0, finalValue, 2000);
+          }
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
 
 const heroStats = document.querySelector(".hero-stats");
 if (heroStats) {
@@ -352,7 +361,7 @@ if (heroStats) {
 }
 
 // ===== FAQ ACCORDION (Optional Enhancement) =====
-document.querySelectorAll(".faq-item").forEach(item => {
+document.querySelectorAll(".faq-item").forEach((item) => {
   item.addEventListener("click", () => {
     // Toggle active class
     item.classList.toggle("active");
@@ -372,7 +381,7 @@ document.querySelectorAll(".faq-item").forEach(item => {
 });
 
 // Add initial styles for FAQ
-document.querySelectorAll(".faq-item p").forEach(p => {
+document.querySelectorAll(".faq-item p").forEach((p) => {
   p.style.maxHeight = "0";
   p.style.overflow = "hidden";
   p.style.transition = "max-height 0.3s ease, opacity 0.3s ease";
@@ -380,7 +389,7 @@ document.querySelectorAll(".faq-item p").forEach(p => {
 
 // ===== DYNAMIC YEAR IN FOOTER =====
 const yearElements = document.querySelectorAll(".footer-bottom");
-yearElements.forEach(el => {
+yearElements.forEach((el) => {
   el.innerHTML = el.innerHTML.replace("2026", new Date().getFullYear());
 });
 
@@ -469,7 +478,7 @@ scrollToTopBtn.addEventListener("click", () => {
 // ===== IMAGE LAZY LOADING =====
 if ("IntersectionObserver" in window) {
   const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const img = entry.target;
         if (img.dataset.src) {
@@ -481,7 +490,7 @@ if ("IntersectionObserver" in window) {
     });
   });
 
-  document.querySelectorAll("img[data-src]").forEach(img => {
+  document.querySelectorAll("img[data-src]").forEach((img) => {
     imageObserver.observe(img);
   });
 }

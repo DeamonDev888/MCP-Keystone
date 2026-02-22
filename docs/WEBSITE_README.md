@@ -5,6 +5,7 @@ Site web commercial ultra-professionnel pour le projet MCP Keystone.
 ## Fichiers Créés
 
 ### Structure
+
 ```
 docs/
 ├── index.html              # Page principale
@@ -19,6 +20,7 @@ docs/
 ## Fonctionnalités Implémentées
 
 ### HTML (index.html)
+
 - ✅ Structure sémantique complète
 - ✅ Navigation fixe avec scroll effect
 - ✅ Hero section avec titre animé
@@ -34,6 +36,7 @@ docs/
 - ✅ Notification social proof
 
 ### CSS (styles.css)
+
 - ✅ Variables CSS pour theming
 - ✅ Dark/Light mode
 - ✅ Animations keyframes
@@ -49,6 +52,7 @@ docs/
 - ✅ Cards avec transformations
 
 ### JavaScript (script.js)
+
 - ✅ Système de particules animées
 - ✅ Scroll progress bar
 - ✅ Navbar scroll effect
@@ -63,6 +67,7 @@ docs/
 ## Design System
 
 ### Couleurs
+
 - Primary Cyan: #00d4aa
 - Primary Purple: #6366f1
 - Dark Background: #0a0a0f
@@ -71,11 +76,13 @@ docs/
 - Text Secondary: #a0a0b0
 
 ### Typographie
+
 - Titres: Space Grotesk (700)
 - Body: Inter (400-600)
 - Hero Title: 4rem (responsive 2.5rem)
 
 ### Effets Visuels
+
 - Preloader avec 3 rotors
 - Particules connectées en canvas
 - Device 3D rotatif
@@ -87,6 +94,7 @@ docs/
 ## Contenu Basé Sur
 
 Les informations du projet sont basées sur:
+
 - `mcp-keystone/README.md` - Concept et spécifications
 - `mcp-keystone/brainstorm.md` - Fonctionnalités God Mode
 
@@ -114,6 +122,7 @@ Les informations du projet sont basées sur:
 Ouvrir simplement `index.html` dans un navigateur moderne.
 
 Pour le développement:
+
 ```bash
 # Serveur local Python
 python -m http.server 8000

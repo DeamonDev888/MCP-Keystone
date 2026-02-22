@@ -1,0 +1,26 @@
+{
+  "name": "mcp-keystone",
+  "version": "1.0.0",
+  "description": "MCP Keystone - Le Disjoncteur Ultra-Intelligent Nouvelle Génération",
+  "main": "docs/assets/js/script.js",
+  "scripts": {
+    "build": "node build.js",
+    "lint": "npx prettier --check docs/",
+    "format": "npx prettier --write docs/",
+    "validate": "node -c docs/assets/js/script.js",
+    "deploy": "git add . && git commit -m 'build: Automated deployment' && git push origin main"
+  },
+  "keywords": [
+    "mcp",
+    "keystone",
+    "breaker",
+    "smart-home",
+    "iot",
+    "cyberpunk"
+  ],
+  "author": "DeamonDev",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.4.2"
+  }
+}
