@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MCP Keystone - Le pont physique vers l'IA">
+    <title>MCP Keystone | Le Pont Physique vers l'IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="dark-mode">
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="keystone-loader">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-core"></div>
+            </div>
+        </div>
+    </div>
+    <canvas id="particles-canvas"></canvas>
+    <div class="scroll-progress"><div class="scroll-progress-bar"></div></div>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand"><span class="brand-icon">🗝️</span><span class="brand-text">MCP Keystone</span></div>
+            <ul class="nav-menu">
+                <li><a href="#features" class="nav-link">Fonctionnalités</a></li>
+                <li><a href="#products" class="nav-link">Produits</a></li>
+                <li><a href="#demo" class="nav-link">Démo</a></li>
+                <li><a href="#pricing" class="nav-link">Tarifs</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle">🌙</button>
+                <button class="cart-icon" id="cart-icon"><span class="cart-count">0</span></button>
+                <button class="btn btn-primary buy-now-btn">Acheter</button>
+            </div>
+        </div>
+    </nav>
+    <section class="hero" id="hero">
+        <div class="hero-bg"><div class="hero-grid"></div><div class="hero-glow"></div></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge"><span class="badge-pulse"></span><span>Nouveau Standard MCP</span></div>
+                <h1 class="hero-title"><span class="title-line">Le Pont</span><span class="title-line title-gradient">Physique vers l'IA</span></h1>
+                <p class="hero-description">Transformez n'importe quel objet physique en outil IA contrôlable par Claude.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-large">Commander →</button>
+                    <button class="btn btn-secondary btn-large">Voir la Démo ▶</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="device-3d-container">
+                    <div class="device-3d" id="device-3d">
+                        <div class="device-face device-front"></div>
+                        <div class="device-core"></div>
+                        <div class="device-pulse"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="countdown-section">
+        <div class="container">
+            <div class="countdown-timer" id="countdown">
+                <div class="time-block"><span class="time-value" id="days">07</span><span class="time-label">Jours</span></div>
+                <div class="time-block"><span class="time-value" id="hours">23</span><span class="time-label">Heures</span></div>
+                <div class="time-block"><span class="time-value" id="minutes">59</span><span class="time-label">Min</span></div>
+                <div class="time-block"><span class="time-value" id="seconds">59</span><span class="time-label">Sec</span></div>
+            </div>
+        </div>
+    </section>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
