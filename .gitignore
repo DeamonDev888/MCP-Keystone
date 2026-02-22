@@ -1,0 +1,252 @@
+# MCP Keystone - Git Ignore File
+# Protects sensitive data, secrets, and private files
+
+# ===== SECRETS & CREDENTIALS =====
+*.key
+*.pem
+*.cert
+*.crt
+*.p12
+*.pfx
+secrets/
+credentials/
+*.env
+*.env.local
+*.env.production
+*.env.development
+.env.*
+!.env.example
+
+# GitHub Tokens
+ghp_*
+gho_*
+ghu_*
+ghs_*
+ghr_*
+
+# API Keys & Tokens
+api_key.txt
+api_keys/
+tokens/
+*.token
+secret*.json
+config/secrets.json
+
+# ===== PRIVATE URLs & ENDPOINTS =====
+# Private API endpoints
+endpoints.json
+private_urls.txt
+api_endpoints/
+
+# Database URLs with credentials
+*://*@*
+*database_url*
+*connection_string*
+
+# Internal/private services
+internal/
+private/*
+
+# ===== SENSITIVE FILES =====
+brainstorm.md
+private_notes.md
+secrets.md
+credentials.md
+
+# Configuration files with secrets
+config.local.*
+settings.local.*
+*.local.json
+*.local.yml
+*.local.yaml
+
+# ===== IDE & EDITOR FILES =====
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ===== DEPENDENCIES =====
+node_modules/
+jspm_packages/
+bower_components/
+vendor/
+.pnp/
+.pnp.js
+
+# ===== BUILD OUTPUT =====
+dist/
+build/
+out/
+.output/
+.cache/
+
+# ===== LOGS & TEMP =====
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# ===== OS FILES =====
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===== BACKUP FILES =====
+*.bak
+*.backup
+*~
+*.orig
+
+# ===== TEST COVERAGE =====
+coverage/
+.nyc_output/
+
+# ===== MCP SERVER DATA =====
+.mcp.local.json
+mcp_*.json
+!mcp.json.example
+
+# ===== DATABASES =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== ENCRYPTED FILES =====
+*.gpg
+*.asc
+*.enc
+
+# ===== SESSION DATA =====
+sessions/
+*.session
+session.json
+
+# ===== USER-SPECIFIC FILES =====
+*.user
+*.user.js
+*.user.css
+
+# ===== DEPLOYMENT KEYS =====
+deploy/
+deployment/
+*.pem
+*.key
+
+# ===== CLOUD PROVIDER CREDS =====
+.aws/
+.azure/
+.gcp/
+.google/
+credentials.json
+service-account.json
+
+# ===== CI/CD SECRETS =====
+.github/workflows/*-secret.yml
+.github/workflows/*-secret.yaml
+.gitlab-ci-local.yml
+
+# ===== DOCKER SECRETS =====
+docker-compose.override.yml
+.env.docker
+
+# ===== SSL/TLS CERTIFICATES =====
+*.crt
+*.key
+*.csr
+*.pem
+
+# ===== DEVELOPMENT CONFIGS =====
+webpack.config.local.js
+vite.config.local.js
+nuxt.config.local.js
+next.config.local.js
+svelte.config.local.js
+
+# ===== API DOCUMENTATION WITH SECRETS =====
+api-docs-private/
+swagger-private.json
+postman-private.json
+
+# ===== MONITORING & ANALYTICS =====
+analytics-keys/
+monitoring-config-private.json
+
+# ===== THIRD-PARTY SERVICE CONFIGS =====
+firebase-private.json
+service-account-private.json
+aws-config-private.json
+azure-config-private.json
+
+# ===== COOKIES & SESSIONS =====
+cookies/
+sessions/
+session-storage/
+
+# ===== RATE LIMITING & THROTTLING =====
+rate-limit-config.json
+throttle-config.json
+
+# ===== WEBHOOK CONFIGURATIONS =====
+webhooks-private.json
+webhook-secrets.json
+
+# ===== OAUTH CONFIGURATIONS =====
+oauth-secrets.json
+auth-config-private.json
+
+# ===== ENCRYPTION KEYS =====
+encryption-keys/
+master-key.txt
+private-keys/
+
+# ===== BACKUP & ARCHIVE =====
+*.backup.zip
+*.archive.zip
+backups/
+archives/
+
+# ===== TEMPORARY UPLOADS =====
+uploads/
+temp-uploads/
+user-uploads/
+
+# ===== CACHE =====
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# ===== BROWSER =====
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== TESTING =====
+*.test.local.ts
+*.spec.local.ts
+test-results/
+playwright-report/
+test-results.json
+
+# ===== MISC =====
+*.pid
+*.seed
+*.pid.lock
+.npm
+.eslintcache
+.node_repl_history
+.yarn-integrity
