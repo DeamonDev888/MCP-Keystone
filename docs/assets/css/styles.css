@@ -175,7 +175,7 @@ body.light-mode {
   height: 80%;
   top: 10%;
   left: 10%;
-  border-top-color: var(--primary-purple);
+  border-top-color: var(--primary-bronze);
   animation-delay: -0.3s;
 }
 
@@ -1128,7 +1128,7 @@ body.light-mode {
   height: 80px;
   background: linear-gradient(135deg, #2a2a3a 0%, #1a1a24 100%);
   border-radius: 15px;
-  border: 2px solid var(--primary-purple);
+  border: 2px solid var(--primary-bronze);
   position: relative;
 }
 .gateway-screen {
