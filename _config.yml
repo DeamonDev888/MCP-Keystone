@@ -1,0 +1,38 @@
+# GitHub Pages Configuration
+theme: jekyll-theme-minimal
+title: MCP Keystone - Le Pont Physique vers l'IA
+description: Transformez n'importe quel objet physique en outil IA contrôlable par Claude
+
+# GitHub Pages settings
+baseurl: /MCP-Keystone
+url: https://deamondev888.github.io
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .github/
+  - README.md
+  - LICENSE
+  - brainstorm.md
+  - assets/
+  - package.json
+  - package-lock.json
+  - pnpm-lock.yaml
+  - pnpm-workspace.yaml
+
+# Include settings
+include:
+  - _pages
