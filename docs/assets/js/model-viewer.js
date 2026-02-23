@@ -1,5 +1,6 @@
 import * as THREE from "https://esm.sh/three@0.150.1";
 import { GLTFLoader } from "https://esm.sh/three@0.150.1/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "https://esm.sh/three@0.150.1/examples/jsm/loaders/DRACOLoader.js";
 import { OrbitControls } from "https://esm.sh/three@0.150.1/examples/jsm/controls/OrbitControls.js";
 
 async function initModelViewer() {
@@ -13,6 +14,7 @@ async function initModelViewer() {
             <div class="loader-spinner"></div>
             <div class="loader-text">Synchronisation du Flux 3D...</div>
             <div class="loader-progress">0%</div>
+            <div class="loader-warning">Optimisation du flux en cours (Compression Draco activée)</div>
         </div>
     `;
   container.appendChild(loaderOverlay);
@@ -66,9 +68,14 @@ async function initModelViewer() {
   const pointLight = new THREE.PointLight(0xffffff, 2, 50);
   scene.add(pointLight);
 
-  // GLTF Loading
+  // GLTF Loading with Draco
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.6/");
+  
   const loader = new GLTFLoader();
-  const modelPath = "assets/models/breaker/breaker.glb";
+  loader.setDRACOLoader(dracoLoader);
+  
+  const modelPath = "assets/models/breaker/breaker-opt.glb";
 
   loader.load(
     modelPath,
