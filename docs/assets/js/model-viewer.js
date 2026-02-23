@@ -44,6 +44,12 @@ async function initModelViewer() {
   controls.enablePan = false;
   controls.target.set(0, 0, 0); // Regarde le centre (0,0,0)
 
+  // Limitation de la rotation verticale (de haut en bas)
+  // Math.PI / 2 est la vue horizontale. 
+  // On limite entre 45° et 105° (en radians)
+  controls.minPolarAngle = Math.PI / 4; // 45 degrés
+  controls.maxPolarAngle = Math.PI / 1.7; // ~105 degrés (évite de voir trop le dessous)
+
   // High-End Lighting
   const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
   scene.add(ambientLight);
@@ -74,9 +80,9 @@ async function initModelViewer() {
       const center = box.getCenter(new THREE.Vector3());
       const size = box.getSize(new THREE.Vector3());
 
-      // Centrage parfait du modèle sur l'origine
+      // Centrage et descente du modèle
       model.position.x = -center.x;
-      model.position.y = -center.y; 
+      model.position.y = -center.y - 0.8; // Descendu pour mieux s'aligner avec le texte
       model.position.z = -center.z;
 
       // Scale réduit pour garantir qu'il tient dans la vue
