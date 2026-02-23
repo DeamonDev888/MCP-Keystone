@@ -50,7 +50,7 @@ if (canvas) {
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 130, 71, ${this.opacity})`;
+      ctx.fillStyle = `rgba(255, 107, 53, ${this.opacity})`;
       ctx.fill();
     }
   }
@@ -76,7 +76,7 @@ if (canvas) {
 
         if (distance < 150) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(255, 130, 71, ${0.2 * (1 - distance / 150)})`;
+          ctx.strokeStyle = `rgba(255, 107, 53, ${0.2 * (1 - distance / 150)})`;
           ctx.lineWidth = 0.6;
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
