@@ -22,15 +22,15 @@ async function initModelViewer() {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.set(2, 2, 5); // GLB scales are usually smaller than OBJ
+    camera.position.set(2.5, 1.5, 4.5); 
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+    renderer.toneMappingExposure = 1.5;
     container.appendChild(renderer.domElement);
 
     // Controls
@@ -38,20 +38,25 @@ async function initModelViewer() {
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 2.0;
+    controls.autoRotateSpeed = 1.5;
     controls.enableZoom = false;
+    controls.enablePan = false;
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
-    dirLight.position.set(5, 5, 5);
-    scene.add(dirLight);
+    const mainLight = new THREE.DirectionalLight(0x00ffa3, 2.5);
+    mainLight.position.set(5, 10, 7.5);
+    scene.add(mainLight);
 
-    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
-    hemiLight.position.set(0, 20, 0);
-    scene.add(hemiLight);
+    const fillLight = new THREE.DirectionalLight(0xff6600, 1.5);
+    fillLight.position.set(-5, -5, 5);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.PointLight(0xffffff, 2, 50);
+    rimLight.position.set(0, 5, -5);
+    scene.add(rimLight);
 
     // GLTF Loading
     const loader = new GLTFLoader();

@@ -96,7 +96,34 @@
         </div>
         <div class="hero-visual">
           <div id="model-3d-viewport" class="device-3d-viewport">
-            <!-- Three.js will inject canvas here -->
+            <div class="scan-overlay"></div>
+            
+            <!-- Technical Labels (Overlaying the 3D canvas) -->
+            <div class="device-highlight-label label-magnetic" style="top: 25%; left: 30%;">
+                <div class="label-dot"></div>
+                <div class="label-box">
+                  <span class="label-title">Capteurs Magnétiques</span>
+                  <span class="label-desc">Analyse vectorielle du flux 4096D</span>
+                </div>
+              </div>
+              
+              <div class="device-highlight-label label-thermal" style="top: 55%; left: 70%;">
+                <div class="label-dot"></div>
+                <div class="label-box">
+                  <span class="label-title">Noyau Thermique IA</span>
+                  <span class="label-desc">Prédiction de défaillance par RAG</span>
+                </div>
+              </div>
+
+              <!-- Floating UI Badges -->
+              <div class="device-floating-ui ui-top-left">
+                <div class="ui-icon">⚡</div>
+                <div class="ui-text">Real-time Load Balancing</div>
+              </div>
+              <div class="device-floating-ui ui-bottom-right">
+                <div class="ui-icon">🧪</div>
+                <div class="ui-text">Semantic Signature Ready</div>
+              </div>
           </div>
         </div>
       </div>
