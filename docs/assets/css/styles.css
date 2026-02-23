@@ -1049,84 +1049,78 @@ body.light-mode {
   filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.8));
 }
 
-/* 3D Rotating Breaker (Detailed Engineering Style) */
-.device-3d-container {
-  perspective: 1200px;
-  height: 450px;
+/* 3D Model Viewport (Three.js) */
+.device-3d-viewport {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: radial-gradient(circle at center, rgba(0, 255, 163, 0.05) 0%, transparent 70%);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: grab;
+}
+
+.device-3d-viewport:active {
+  cursor: grabbing;
+}
+
+.model-loader-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 12, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: deviceFloat 4s ease-in-out infinite;
+  z-index: 100;
+  transition: opacity 0.5s ease;
+  backdrop-filter: blur(10px);
 }
 
-.device-3d {
-  position: relative;
-  width: 120px;
-  height: 320px;
-  transform-style: preserve-3d;
-  animation: rotate3D 20s linear infinite;
+.loader-content {
+  text-align: center;
+  padding: 30px;
 }
 
-.device-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 255, 163, 0.03);
-  border: 1px solid rgba(0, 255, 163, 0.4);
-  box-shadow: 0 0 15px rgba(0, 255, 163, 0.1);
+.loader-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(0, 255, 163, 0.1);
+  border-top-color: var(--primary-neon);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
 }
 
-/* Specific Face Styling for Breaker Shape */
-.device-front  { transform: rotateY(  0deg) translateZ(60px); }
-.device-back   { transform: rotateY(180deg) translateZ(60px); }
-.device-right  { transform: rotateY( 90deg) translateZ(60px); width: 120px; }
-.device-left   { transform: rotateY(-90deg) translateZ(60px); width: 120px; }
-.device-top    { transform: rotateX( 90deg) translateZ(160px); height: 120px; }
-.device-bottom { transform: rotateX(-90deg) translateZ(160px); height: 120px; }
-
-/* The Switch Lever (Manette) */
-.device-switch {
-  position: absolute;
-  width: 40px;
-  height: 60px;
-  top: 40%;
-  left: 50%;
-  transform: translateX(-50%) translateZ(65px) rotateX(-20deg);
-  background: var(--gradient-main);
-  border: 1px solid var(--primary-orange);
-  box-shadow: 0 0 20px var(--primary-orange);
-  transform-style: preserve-3d;
+.loader-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-/* Electrical Terminals */
-.device-face::before, .device-face::after {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 10px;
-  background: rgba(0, 255, 163, 0.3);
-  left: 50%;
-  transform: translateX(-50%);
-}
-.device-front::before { top: 10px; border-bottom: 2px solid var(--primary-neon); }
-.device-front::after { bottom: 10px; border-top: 2px solid var(--primary-neon); }
-
-.device-core-glow {
-  position: absolute;
-  width: 120px;
-  height: 150px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, var(--primary-neon) 0%, transparent 70%);
-  filter: blur(45px);
-  opacity: 0.3;
-  animation: corePulse 3s ease-in-out infinite;
+.loader-progress {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-neon);
+  text-shadow: 0 0 20px rgba(0, 255, 163, 0.5);
 }
 
-@keyframes rotate3D {
-  from { transform: rotateY(0) rotateX(15deg); }
-  to { transform: rotateY(360deg) rotateX(15deg); }
+.loader-warning {
+  margin-top: 20px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  max-width: 250px;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 @keyframes corePulse {
