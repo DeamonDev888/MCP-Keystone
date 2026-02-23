@@ -13,16 +13,18 @@ async function initModelViewer() {
     loaderOverlay.innerHTML = `
         <div class="loader-content">
             <div class="loader-spinner"></div>
-            <div class="loader-text">Initialisation du Noyau GLB...</div>
+            <div class="loader-text">Initialisation du Noyau 3D...</div>
             <div class="loader-progress">0%</div>
-            <div class="loader-warning">Note: Chargement du modèle haute fidélité (80MB+). Merci de patienter.</div>
+            <div class="loader-warning">Modèle haute fidélité (84MB). Initialisation du rendu PBR...</div>
         </div>
     `;
     container.appendChild(loaderOverlay);
 
     const scene = new THREE.Scene();
+    
+    // Camera
     const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.set(2.5, 1.5, 4.5); 
+    camera.position.set(0, 0, 5); 
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -30,7 +32,7 @@ async function initModelViewer() {
     renderer.setClearColor(0x000000, 0);
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.5;
+    renderer.toneMappingExposure = 2.0; // Dynamic exposure boost
     container.appendChild(renderer.domElement);
 
     // Controls
@@ -38,25 +40,25 @@ async function initModelViewer() {
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 1.5;
+    controls.autoRotateSpeed = 1.0;
     controls.enableZoom = false;
     controls.enablePan = false;
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5); // Boosted Ambient
     scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight(0x00ffa3, 2.5);
+    const mainLight = new THREE.DirectionalLight(0xffffff, 2.5);
     mainLight.position.set(5, 10, 7.5);
     scene.add(mainLight);
 
-    const fillLight = new THREE.DirectionalLight(0xff6600, 1.5);
-    fillLight.position.set(-5, -5, 5);
-    scene.add(fillLight);
+    const backLight = new THREE.DirectionalLight(0x00ffa3, 2);
+    backLight.position.set(-5, 5, -5);
+    scene.add(backLight);
 
-    const rimLight = new THREE.PointLight(0xffffff, 2, 50);
-    rimLight.position.set(0, 5, -5);
-    scene.add(rimLight);
+    // Follow light
+    const followLight = new THREE.PointLight(0xffffff, 1.5);
+    scene.add(followLight);
 
     // GLTF Loading
     const loader = new GLTFLoader();
@@ -64,21 +66,37 @@ async function initModelViewer() {
     loader.load('assets/models/breaker/breaker.glb', (gltf) => {
         const model = gltf.scene;
         
-        // Center the object
+        // Auto-fit and center
         const box = new THREE.Box3().setFromObject(model);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         
+        // Reset position to center
         model.position.x += (model.position.x - center.x);
         model.position.y += (model.position.y - center.y);
         model.position.z += (model.position.z - center.z);
         
-        // Adjust scale to fit viewport automatically
+        // Adjust scale
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 3.5 / maxDim; // Adjusted for GLB camera distance
+        const scale = 3.5 / maxDim; 
         model.scale.set(scale, scale, scale);
+
+        // Ensure materials are visible even without textures
+        model.traverse((child) => {
+            if (child.isMesh) {
+                child.material.side = THREE.DoubleSide;
+                // If it looks too dark, we boost the material
+                if (child.material.emissive) {
+                    child.material.emissiveIntensity = 0.5;
+                }
+            }
+        });
         
         scene.add(model);
+        
+        // Final camera setup
+        controls.target.set(0, 0, 0);
+        camera.position.set(3, 1, 4);
         
         // Fade out loader
         loaderOverlay.style.opacity = '0';
@@ -93,7 +111,7 @@ async function initModelViewer() {
     }, (error) => {
         console.error('Error loading GLB:', error);
         const loaderText = document.querySelector('.loader-text');
-        if (loaderText) loaderText.innerHTML = '<span style="color: #ff3333">Erreur de chargement du modèle GLB</span>';
+        if (loaderText) loaderText.innerHTML = '<span style="color: #ff3333">Erreur Critique : Modèle Introuvable</span>';
     });
 
     // Handle Resize
@@ -105,6 +123,7 @@ async function initModelViewer() {
 
     function animate() {
         requestAnimationFrame(animate);
+        followLight.position.copy(camera.position);
         controls.update();
         renderer.render(scene, camera);
     }
