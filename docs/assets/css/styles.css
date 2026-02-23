@@ -2621,27 +2621,32 @@ body.light-mode {
 
 /* Better Container for Small Screens */
 @media (max-width: 768px) {
-  .features,
-  .products,
-  .specs,
-  .pricing,
-  .faq {
+  .features, .products, .specs, .pricing, .faq {
     padding: 80px 0;
+  }
+  .device-3d-viewport {
+    height: 450px;
+  }
+  .device-highlight-label {
+    transform: scale(0.8);
+  }
+  .device-floating-ui {
+    padding: 8px 12px;
+    font-size: 0.6rem;
+  }
+  .hero-visual {
+    margin-top: 40px;
   }
 }
 
 @media (max-width: 480px) {
-  .features,
-  .products,
-  .specs,
-  .pricing,
-  .faq {
+  .features, .products, .specs, .pricing, .faq {
     padding: 60px 0;
   }
-
-  .feature-card,
-  .product-card,
-  .pricing-card {
-    padding: 40px 28px;
+  .device-3d-viewport {
+    height: 400px;
+  }
+  .label-box {
+    display: none; 
   }
 }

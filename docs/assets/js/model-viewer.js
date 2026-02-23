@@ -69,12 +69,13 @@ async function initModelViewer() {
         const size = box.getSize(new THREE.Vector3());
         
         model.position.x -= center.x;
-        model.position.y -= center.y;
+        model.position.y -= (center.y + 0.5); // Lowered the object even more as requested
         model.position.z -= center.z;
         
         // Scale boost for better presence
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 5.5 / maxDim; 
+        const isMobile = window.innerWidth < 768;
+        const scale = (isMobile ? 6.5 : 5.8) / maxDim; 
         model.scale.set(scale, scale, scale);
 
         model.traverse((child) => {
