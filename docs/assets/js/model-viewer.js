@@ -1,7 +1,7 @@
 
-import * as THREE from 'https://cdn.skypack.dev/three@0.150.1/build/three.module.js';
-import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.150.1/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from 'https://cdn.skypack.dev/three@0.150.1/examples/jsm/controls/OrbitControls.js';
+import * as THREE from 'https://esm.sh/three@0.150.1';
+import { GLTFLoader } from 'https://esm.sh/three@0.150.1/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'https://esm.sh/three@0.150.1/examples/jsm/controls/OrbitControls.js';
 
 async function initModelViewer() {
     const container = document.getElementById('model-3d-viewport');
@@ -14,14 +14,15 @@ async function initModelViewer() {
             <div class="loader-spinner"></div>
             <div class="loader-text">Démarrage du Moteur...</div>
             <div class="loader-progress">0%</div>
-            <div id="debug-log" style="font-size: 10px; color: #666; margin-top: 10px;"></div>
+            <div id="debug-log" style="font-size: 10px; color: #666; margin-top: 10px;">Initialisation des modules...</div>
         </div>
     `;
     container.appendChild(loaderOverlay);
 
     const log = (msg) => {
         console.log(msg);
-        document.getElementById('debug-log').innerText = msg;
+        const logEl = document.getElementById('debug-log');
+        if (logEl) logEl.innerText = msg;
     };
 
     const scene = new THREE.Scene();
@@ -30,23 +31,24 @@ async function initModelViewer() {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 2.0;
     container.appendChild(renderer.domElement);
 
-    // Placeholder Cube (To test if Three.js is working)
+    // Placeholder Cube (Diagnostic)
     const testBox = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshPhongMaterial({ color: 0xff0000, wireframe: true })
+        new THREE.MeshPhongMaterial({ color: 0x00ffa3, wireframe: true })
     );
     scene.add(testBox);
-    log("Moteur OK. Chargement du modèle...");
+    log("Three.js OK. Chargement du modèle GLB...");
 
     // Controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
+    controls.enableZoom = false;
 
     // Intense Lights
     scene.add(new THREE.AmbientLight(0xffffff, 2));
@@ -56,12 +58,11 @@ async function initModelViewer() {
 
     // GLTF Loading
     const loader = new GLTFLoader();
-    // Path correction for GitHub Pages subfolders
     const modelPath = 'assets/models/breaker/breaker.glb?v=' + Date.now();
 
     loader.load(modelPath, (gltf) => {
         log("Modèle reçu ! Finalisation...");
-        scene.remove(testBox); // Remove the red cube
+        scene.remove(testBox); 
         
         const model = gltf.scene;
         
@@ -74,7 +75,7 @@ async function initModelViewer() {
         model.position.z -= center.z;
         
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 4 / maxDim;
+        const scale = 4.5 / maxDim; // Slightly larger
         model.scale.set(scale, scale, scale);
 
         model.traverse((child) => {
@@ -93,17 +94,21 @@ async function initModelViewer() {
     }, (xhr) => {
         if (xhr.lengthComputable) {
             const percent = Math.round((xhr.loaded / xhr.total) * 100);
-            document.querySelector('.loader-progress').innerText = percent + '%';
-            if(percent === 100) log("Traitement des données...");
+            const prog = document.querySelector('.loader-progress');
+            if (prog) prog.innerText = percent + '%';
         }
     }, (error) => {
-        log("ERREUR : " + error.message);
+        log("ERREUR CHARGEMENT : " + error.message);
         console.error(error);
+        
+        // Show something even if model fails
+        testBox.material.color.setHex(0xff3333);
+        testBox.material.wireframe = false;
     });
 
     function animate() {
         requestAnimationFrame(animate);
-        testBox.rotation.y += 0.01;
+        if (testBox) testBox.rotation.y += 0.01;
         controls.update();
         renderer.render(scene, camera);
     }
