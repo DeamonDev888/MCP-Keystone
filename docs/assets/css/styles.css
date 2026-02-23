@@ -602,8 +602,7 @@ body.light-mode {
   height: 200%;
   top: -50%;
   left: -50%;
-  background-image: 
-    radial-gradient(circle at 2px 2px, var(--primary-orange) 1px, transparent 0);
+  background-image: radial-gradient(circle at 2px 2px, var(--primary-orange) 1px, transparent 0);
   background-size: 60px 60px;
   transform: perspective(1000px) rotateX(45deg);
   animation: latticeMove 60s linear infinite;
@@ -616,8 +615,14 @@ body.light-mode {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    linear-gradient(90deg, var(--dark-bg) 0%, transparent 15%, transparent 85%, var(--dark-bg) 100%),
+  background:
+    linear-gradient(
+      90deg,
+      var(--dark-bg) 0%,
+      transparent 15%,
+      transparent 85%,
+      var(--dark-bg) 100%
+    ),
     linear-gradient(0deg, var(--dark-bg) 0%, transparent 15%, transparent 85%, var(--dark-bg) 100%);
 }
 
@@ -647,8 +652,15 @@ body.light-mode {
 }
 
 @keyframes nodePulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.2); }
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
 }
 
 .vector-stream {
@@ -668,7 +680,7 @@ body.light-mode {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     linear-gradient(rgba(0, 255, 163, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 163, 0.1) 1px, transparent 1px);
   background-size: 100px 100px;
@@ -677,8 +689,12 @@ body.light-mode {
 }
 
 @keyframes streamFlow {
-  from { background-position: 0 0; }
-  to { background-position: 500px 500px; }
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 500px;
+  }
 }
 
 .vector-stream::after {
@@ -699,8 +715,12 @@ body.light-mode {
 }
 
 @keyframes streamRotate {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .hero .container {
@@ -880,21 +900,45 @@ body.light-mode {
 }
 
 @keyframes glitch-1 {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
 }
 
 @keyframes glitch-2 {
-  0% { transform: translate(0); }
-  20% { transform: translate(2px, -2px); }
-  40% { transform: translate(2px, 2px); }
-  60% { transform: translate(-2px, -2px); }
-  80% { transform: translate(-2px, 2px); }
-  100% { transform: translate(0); }
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(2px, -2px);
+  }
+  40% {
+    transform: translate(2px, 2px);
+  }
+  60% {
+    transform: translate(-2px, -2px);
+  }
+  80% {
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    transform: translate(0);
+  }
 }
 
 .hero-description {
@@ -1095,7 +1139,7 @@ body.light-mode {
 }
 
 .loader-text {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 10px;
@@ -1120,17 +1164,31 @@ body.light-mode {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes corePulse {
-  0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.2); }
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
 }
 
 @keyframes deviceFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .device-platform {
@@ -1160,8 +1218,15 @@ body.light-mode {
 }
 
 @keyframes platformPulse {
-  0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
-  50% { opacity: 0.8; transform: translateX(-50%) scale(1.2); }
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1.2);
+  }
 }
 
 .device-main-image {
@@ -1186,9 +1251,17 @@ body.light-mode {
 }
 
 @keyframes scanMove {
-  0% { top: 10%; opacity: 0; }
-  50% { opacity: 0.8; }
-  100% { top: 90%; opacity: 0; }
+  0% {
+    top: 10%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    top: 90%;
+    opacity: 0;
+  }
 }
 
 .device-highlight-label {
@@ -1239,7 +1312,7 @@ body.light-mode {
 
 .label-title {
   display: block;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--primary-neon);
@@ -1267,8 +1340,16 @@ body.light-mode {
   z-index: 5;
 }
 
-.ui-top-left { top: 10%; left: 5%; animation-delay: 0s; }
-.ui-bottom-right { bottom: 10%; right: 5%; animation-delay: -2s; }
+.ui-top-left {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+.ui-bottom-right {
+  bottom: 10%;
+  right: 5%;
+  animation-delay: -2s;
+}
 
 .ui-icon {
   font-size: 1.2rem;
@@ -1297,13 +1378,24 @@ body.light-mode {
 }
 
 @keyframes floatingUI {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulseRotate {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(2.5); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
 .label-dot {
@@ -1330,8 +1422,14 @@ body.light-mode {
 }
 
 @keyframes dotPulse {
-  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-  100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
 }
 
 .label-box {
@@ -1407,8 +1505,13 @@ body.light-mode {
 }
 
 @keyframes uiFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .ui-icon {
@@ -1650,12 +1753,7 @@ body.light-mode {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.05),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
   transition: 0.5s;
 }
 
@@ -2621,7 +2719,11 @@ body.light-mode {
 
 /* Better Container for Small Screens */
 @media (max-width: 768px) {
-  .features, .products, .specs, .pricing, .faq {
+  .features,
+  .products,
+  .specs,
+  .pricing,
+  .faq {
     padding: 80px 0;
   }
   .device-3d-viewport {
@@ -2640,13 +2742,17 @@ body.light-mode {
 }
 
 @media (max-width: 480px) {
-  .features, .products, .specs, .pricing, .faq {
+  .features,
+  .products,
+  .specs,
+  .pricing,
+  .faq {
     padding: 60px 0;
   }
   .device-3d-viewport {
     height: 400px;
   }
   .label-box {
-    display: none; 
+    display: none;
   }
 }
