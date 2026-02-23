@@ -24,7 +24,7 @@ async function initModelViewer() {
     0.1,
     1000
   );
-  camera.position.set(3, 1.5, 6);
+  camera.position.set(0, 0.5, 8); // Caméra plus frontale et plus éloignée
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(container.clientWidth, container.clientHeight);
@@ -42,7 +42,7 @@ async function initModelViewer() {
   controls.autoRotateSpeed = 1.2;
   controls.enableZoom = false;
   controls.enablePan = false;
-  controls.target.set(0, 0, 0);
+  controls.target.set(0, 0, 0); // Regarde le centre (0,0,0)
 
   // High-End Lighting
   const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
@@ -74,14 +74,15 @@ async function initModelViewer() {
       const center = box.getCenter(new THREE.Vector3());
       const size = box.getSize(new THREE.Vector3());
 
-      model.position.x -= center.x;
-      model.position.y -= center.y; // Centré au milieu
-      model.position.z -= center.z;
+      // Centrage parfait du modèle sur l'origine
+      model.position.x = -center.x;
+      model.position.y = -center.y; 
+      model.position.z = -center.z;
 
-      // Scale optimisé pour s'assurer que l'objet est entièrement visible
+      // Scale réduit pour garantir qu'il tient dans la vue
       const maxDim = Math.max(size.x, size.y, size.z);
       const isMobile = window.innerWidth < 768;
-      const scale = (isMobile ? 4.5 : 4.0) / maxDim; // Légèrement réduit pour respirer
+      const scale = (isMobile ? 3.5 : 3.2) / maxDim; // Plus petit pour être sûr
       model.scale.set(scale, scale, scale);
 
       model.traverse((child) => {
